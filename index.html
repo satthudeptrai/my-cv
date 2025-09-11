@@ -4,89 +4,179 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV anh đẹp trai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("/fonts/Inter-Regular.woff2") format("woff2"),
+            url("/fonts/Inter-Regular.woff") format("woff");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter";
+        src: url("/fonts/Inter-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: bold;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Merriweather";
+        src: url("/fonts/Merriweather-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Merriweather";
+        src: url("/fonts/Merriweather-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* ==== 3) Cấu trúc cơ bản cho in PDF ==== */
+      :root{
+        --base-font: "Inter", "Roboto", "Helvetica", "Arial", sans-serif;
+        --serif-font: "Merriweather", "Times New Roman", serif;
+        --font-size: 12pt; /* điểm mặc định cho in */
+        --line-height: 1.45;
+        --page-width: 210mm;  /* A4 portrait */
+        --page-height: 297mm;
+        --page-margin: 20mm;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: var(--base-font);
+        font-size: var(--font-size);
+        line-height: var(--line-height);
+        color: #111;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-print-color-adjust: exact;
+      }
+      body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #525659;
+      }
+      #cv-container {
+        width: 850px;
+        margin: 0 auto;
+        padding: 30px 40px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 8px 32px 0 rgba(76, 51, 255, 0.15);
+      }
+      #cv-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+      }
+      #info {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+      }
+      #username {
+        flex: 1;
+      }
+      #name {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+      #role {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 12px;
+      }
+      #user-info {
+        background: #2c262a;
+        color: #fff;
+        padding: 18px 24px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(76, 51, 255, 0.08);
+        min-width: 260px;
+      }
+      .info-item {
+        display: flex;
+        margin-bottom: 7px;
+        font-size: 16px;
+      }
+      .info-item div:first-child {
+        font-weight: 600;
+        width: 110px;
+        color: #f3f3f3;
+      }
+      #cv-body {
+        margin-top: 18px;
+      }
+      .body-item {
+        border-radius: 12px;
+        border: none;
+        margin-top: 18px;
+        padding: 18px 22px;
+        box-shadow: 0 2px 8px rgba(76, 51, 255, 0.06);
+        transition: box-shadow 0.2s;
+      }
+      .body-item-title {
+        font-weight: 700;
+        font-size: 26px;
+        border-bottom: 2px solid #667eea;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+      }
+      .body-item-contain {
+        display: flex;
+        padding: 10px 0 5px 0;
+      }
+      .time {
+        font-size: 15px;
+        width: 70px;
+        font-weight: 700;
+        border-right: 2px solid #764ba2;
+        text-align: center;
+        margin-right: 18px;
+        padding-right: 12px;
+      }
+      .data {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 2px 5px;
+        font-size: 16px;
+      }
+      .skill-item {
+        margin-bottom: 7px;
+        width: fit-content;
+        font-size: 16px;
+        padding: 5px 12px;
+        border-radius: 8px;
+        display: inline-block;
+        margin-right: 8px;
+        margin-top: 4px;
+        background: #f0f0f0;
+      }
+      .skill-item::before {
+        content: "✓ ";
+        font-weight: bold;
+      }
+    </style>
   </head>
-  <style>
-    body {
-      background-color: #525659;
-    }
-    #cv-container {
-      width: 800px;
-      margin: auto;
-      padding: 10px;
-      border: solid 1px gray;
-      font-family: sans-serif;
-      background-color: #fff;
-    }
-    #cv-header {
-      display: flex;
-      justify-content: space-between;
-    }
-    #avatar {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-    }
-    #name {
-      font-size: 50px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    #role {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    #user-info {
-      background-color: #2c262a;
-      color: #fff;
-      padding: 10px;
-    }
-    .info-item {
-      display: flex;
-      margin-bottom: 5px;
-    }
-    .info-item div:first-child {
-      font-weight: bold;
-      width: 100px;
-    }
-    #cv-body {
-      margin-top: 30px;
-    }
-    .body-item {
-      border: solid 1px #3e3c3c;
-      margin-top: 10px;
-      padding: 5px;
-      box-shadow: 3px 3px 3px 0px #3e3c3c;
-    }
-    .body-item-title {
-      font-weight: bolder;
-      font-size: 25px;
-      border-bottom: solid 2px #3e3c3c;
-      padding-bottom: 10px;
-    }
-    .body-item-contain {
-      display: flex;
-      padding: 10px 5px 5px 5px;
-    }
-    .time {
-      font-size: 14px;
-      width: 60px;
-      font-weight: bolder;
-      border-right: solid 1px #000;
-      text-align: center;
-    }
-    .data {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 2px 5px;
-      width: 697px;
-    }
-  </style>
   <body>
     <div id="cv-container">
       <div id="cv-header">
-        <img src="avatar.jfif" alt="avatar" id="avatar" />
-        <div>
+        <div id="info">
           <div id="username">
             <div id="name">Đỗ Ngọc Ánh</div>
             <div id="role">Developer Front End</div>
@@ -109,10 +199,6 @@
               <div>0348794017</div>
             </div>
             <div class="info-item">
-              <div>Skype:</div>
-              <div>endlesslovo@outlook.com.vn</div>
-            </div>
-            <div class="info-item">
               <div>Gmail:</div>
               <div>01648794017a@gmail.com</div>
             </div>
@@ -124,7 +210,15 @@
         <div class="body-item">
           <div class="body-item-title">Skill highlights</div>
           <div class="body-item-contain">
-            <div class="data">More than 4 years of experience working frontend. Have experience working with HTML, CSS, JavaScript, Vuejs, ReactJs, Nodejs</div>
+            <div class="data">
+              <div id="skill-list">
+                <div class="skill-item">HTML, CSS, JavaScript, TypeScript, Nodejs</div>
+                <div class="skill-item">Framework: Vuejs, Reactjs</div>
+                <div class="skill-item">Version control tool: Git</div>
+                <div class="skill-item">Familiar with Agile Scrum</div>
+                <div class="skill-item">Good communication skills, teamwork skills</div>
+              </div>
+            </div>
           </div>
         </div>
         <!-- Học vấn -->
@@ -151,9 +245,22 @@
           <div class="body-item-title">Experience</div>
           <div class="body-item-contain">
             <div class="time">
-              9/2023 <br />
+              5/2025 <br />
               - <br />
               Now
+            </div>
+            <div class="data">
+              <div style="font-weight: bold">DeepSync</div>
+              <div>
+                <span style="font-weight: bold">Position:</span> Developer
+              </div>
+            </div>
+          </div>
+          <div class="body-item-contain">
+            <div class="time">
+              9/2024 <br />
+              - <br />
+              4/2025
             </div>
             <div class="data">
               <div style="font-weight: bold">Freelancer</div>
@@ -206,6 +313,52 @@
         <div class="body-item">
           <div class="body-item-title">Project</div>
           
+          <div class="body-item-contain">
+            <div class="time">
+              5/2025 <br />
+              - <br />
+              Now
+            </div>
+            <div class="data">
+              <div style="font-weight: bold; margin-bottom: 8px">
+                CaseByCase
+              </div>
+              <div>
+                Support data entry, management and car trading.
+              </div>
+              <br>
+              <div style="margin-top: 3px">Team size: 6.</div>
+              <div style="margin-top: 3px">Position: Frontend.</div>
+              <div style="margin-top: 3px">My responsibilities: Development, Bug Fixing.</div>
+              <div style="margin-top: 3px">
+                Technology: HTML, Scss, ts, ReactJs, Vite, Nodejs.
+              </div>
+            </div>
+          </div>
+
+          <div class="body-item-contain">
+            <div class="time">
+              9/2024 <br />
+              - <br />
+              4/2025
+            </div>
+            <div class="data">
+              <div style="font-weight: bold; margin-bottom: 8px">
+                Audacity
+              </div>
+              <div>
+                Support buying and selling NFT, Coins.
+              </div>
+              <br>
+              <div style="margin-top: 3px">Team size: 12.</div>
+              <div style="margin-top: 3px">Position: Frontend.</div>
+              <div style="margin-top: 3px">My responsibilities: Development, Bug Fixing.</div>
+              <div style="margin-top: 3px">
+                Technology: HTML, Scss, ts, Vue3, element-plus, Vite, Java.
+              </div>
+            </div>
+          </div>
+
           <div class="body-item-contain">
             <div class="time">
               3/2023 <br />
